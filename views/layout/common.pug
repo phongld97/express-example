@@ -2,4 +2,19 @@ html
     head
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
     body
-        block content
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+            a.navbar-brand(href="#")
+                img(src="/images/coding.svg", width="36", height="36")
+            div.collapse.navbar-collapse(id="navbarTogglerDemo01")
+                ul.navbar-nav.mr-auto(id="")
+                    li.nav-item.active
+                    a.nav-link.text-white(href='#')
+                        | Home 
+                        span.sr-only (current)
+                    li.nav-item
+                    a.nav-link.text-white(href='#') Features
+                    li.nav-item
+                    a.nav-link.text-white(href='#') Pricing
+
+        div.container
+            block content
