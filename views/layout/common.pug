@@ -2,19 +2,15 @@ html
     head
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
     body
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-            a.navbar-brand(href="#")
-                img(src="/images/coding.svg", width="36", height="36")
-            div.collapse.navbar-collapse(id="navbarTogglerDemo01")
-                ul.navbar-nav.mr-auto(id="")
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href='/') Express App
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarSupportedContent.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
                     li.nav-item.active
-                    a.nav-link.text-white(href='#')
-                        | Home 
-                        span.sr-only (current)
+                        a.nav-link(href='/')| Home 
                     li.nav-item
-                    a.nav-link.text-white(href='#') Features
-                    li.nav-item
-                    a.nav-link.text-white(href='#') Pricing
-
-        div.container
+                        a.nav-link(href='/users') Users
+        div.container.pt-3
             block content

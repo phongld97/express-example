@@ -1,15 +1,26 @@
 extends ../layout/common
 
 block content
-    h1 Users
-    a(href="/users/create") New
-    form(action="/users/search", method="GET", class="d-flex")
-        input(type="text", name="q", value=query, class="form-control")
-        button.btn.btn-primary.ml-2 Search
+        h1.d-flex Users
+            
+        a(href="/users/create") 
+            button.btn.btn-primary New
+        form.pt-2(action="/users/search", method="GET", class="d-flex")
+            input(type="text", name="q", value=query, class="form-control")
+            button.btn.btn-primary.ml-2 Search
 
-    ul
-        each user in users
-            li
-                span= user.name
-                span &nbsp;
-                a(href="/users/" + user.id) View
+        table.table
+            thead.thead-light
+                tr
+                    th(scope="col") Name
+                    th(scope="col") Phone
+                    th(scope="col") Action
+            tbody
+                each user in users
+                    tr
+                        td
+                            span= user.name
+                        td
+                            span= user.phonenumber
+                        td
+                            a(href="/users/" + user.id) View
