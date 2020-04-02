@@ -14,15 +14,15 @@ block content
                     .card-body
                         h5.card-title= product.name
                         p.card-text= product.description
-                        a.btn.btn-primary(href='#') Detail
+                        a.btn.btn-primary(href='/cart/add/' + product.id) Add to card
     
     nav(aria-label='Page navigation example')
         ul.pagination.justify-content-end
             li.page-item
-                a.page-link(href='/product?page=' + prePage) Previous
+                a.page-link(href='/products?page=' + prePage) Previous
             li.page-item
-                a.page-link(href='/product?page=' + currentPage)= currentPage
+                a.page-link(href='/products?page=' + currentPage)= currentPage
             li.page-item
-                a.page-link(href='/product?page=' + nextPage)= nextPage
+                a.page-link(href='/products?page=' + nextPage)= nextPage
             li.page-item
-                a.page-link(href='/product?page=' + nextPage) Next
+                a.page-link(href='/products?page=' + nextPage) Next

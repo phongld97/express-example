@@ -13,7 +13,14 @@ html
                     li.nav-item
                         a.nav-link(href='/users') Users
                     li.nav-item
-                        a.nav-link(href='/product') Products
+                        a.nav-link(href='/products') Products
+
+                    a(href='/cart')        
+                        button.btn.btn-primary(type='button')
+                            | Cart 
+                            if totalCard
+                                span.badge.badge-light=totalCard
+
             if user
                 p= user.name
         div.container.pt-3

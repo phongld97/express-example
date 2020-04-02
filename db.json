@@ -749,5 +749,15 @@
       "description": "elit ac nulla sed vel enim sit amet nunc viverra",
       "price": 88430
     }
+  ],
+  "sessions": [
+    {
+      "id": "cl0_FNU1E",
+      "cart": {
+        "1": 2,
+        "2": 1,
+        "4": 1
+      }
+    }
   ]
 }
