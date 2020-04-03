@@ -1,11 +1,14 @@
 module.exports.postCreate = (req, res, next) => {
     var errors = [];
+
     if (!req.body.name) {
         errors.push("Name is required.");
     }
+
     if (!req.body.phonenumber) {
         errors.push("Phone number is required.");
     }
+
     if(errors.length) {
         res.render('users/create', {
             errors: errors,
@@ -13,5 +16,6 @@ module.exports.postCreate = (req, res, next) => {
         });
         return;
     }
+    
     next();
 }

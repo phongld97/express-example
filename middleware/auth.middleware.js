@@ -1,9 +1,10 @@
-const db = require('../db');
+const User = require('../models/user.model');
 
-module.exports.authLogin = (req, res, next) => {
+module.exports.authLogin = async (req, res, next) => {
     var id = req.signedCookies.userID;
 
-    var user = db.get('users').find({id: id}).value();
+    var user = await User.findOne({ _id: id });
+    
     if (!user) {
         res.redirect('/auth/login');
         return;
@@ -12,9 +13,11 @@ module.exports.authLogin = (req, res, next) => {
     next();
 }
 
-module.exports.authAfterLogin = (req, res, next) => {
+module.exports.authAfterLogin = async (req, res, next) => {
     var id = req.signedCookies.userID;
-    var user = db.get('users').find({id: id}).value();
+
+    var user = await User.findOne({ _id: id });
+    
     if (!user) {
         res.render('auth/login');
         return;

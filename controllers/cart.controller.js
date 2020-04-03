@@ -1,13 +1,46 @@
-const db = require('../db');
+const Session = require('../models/session.model');
 
-module.exports.add = (req, res, next) => {
+module.exports.add = async (req, res, next) => {
     var productId = req.params.productId;
     var sessionId = req.signedCookies.sessionId;
     if (!sessionId) {
         res.redirect('/products');
         return;
     }
-    var count = db.get('sessions').find({id: sessionId}).get('cart.'+productId, 0).value();
-    db.get('sessions').find({id: sessionId}).set('cart.'+productId, count + 1).write();
+    var session = await Session.findOne({_id: sessionId});
+    var arrIdProduct = session.cart;
+    
+    var count = 0;
+    for (var i of arrIdProduct) {
+        if (i.id === productId) {
+            count = i.amount;
+        }
+    }
+    if (arrIdProduct.length === 0 || count === 0) {
+        await Session.update(
+            { _id: sessionId },
+            {
+                $push: {
+                    cart: {
+                        id: productId,
+                        amount: 1
+                    }
+                }
+            },
+        );
+    }
+
+    if (count) {
+        await Session.update(
+            { _id: sessionId, "cart.id": productId },
+            {
+                $set: {
+                    "cart.$.amount": count + 1
+                }
+            },
+            { upsert: true }
+        );
+    }
+
     res.redirect('/products');
 };
